@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 
-import carModel from '@/public/assets/car1.glb';
+import carModel from '/assets/car1.glb';
 
 export function Car({ ...props }) {
   const carRef = useRef();
