@@ -1,14 +1,16 @@
-export default async function userRegister(name:string, userEmail:string, tel:string ,userPassword:string){
+import { UserRegister } from "@/interfaces"
+import { Redirect } from "next"
+export default async function userRegister(user:UserRegister){
     const response = await fetch(`${process.env.BACKEND_URL}/api/v1/auth/register`, {
         method: "POST",
         headers: {
             "Content-Type" : "application/json",
         },
         body: JSON.stringify({
-            name: name,
-            email: userEmail,
-            tel: tel ,
-            password: userPassword
+            name: user.name,
+            email: user.userEmail,
+            tel: user.tel ,
+            password: user.userPassword
         }),  
     })
 

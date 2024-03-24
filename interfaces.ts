@@ -17,3 +17,10 @@ export interface CarJson {
     count: number
     data: CarItem[]
 }
+
+export interface UserRegister {
+    name:string
+    userEmail:string
+    tel:string 
+    userPassword:string
+}
