@@ -1,21 +1,25 @@
-import getCars from "@/libs/getCars";
-import CarCatalog from "@/components/CarCatalog";
-import { Suspense } from "react";
-import { LinearProgress } from "@mui/material";
-import CarPanel from "@/components/CarPanel";
-export default async function Car(){
-    const cars = await getCars()
-    return(
-        <main className="text-center p-5">
-            <h1 className="text-xl front-medium">Select Your Travel Partner</h1>
-            <Suspense fallback={<p>Loading ... <LinearProgress/></p>}>
-            <CarCatalog carJson={cars}/>
-            </Suspense>
-            
-            <hr className="my-10"/>
-            <h1 className="text-xl font-medium">TRY Client-side CAR Panel</h1>
-            <CarPanel/>
+'use client';
 
-        </main>
-    );
+import { Canvas } from '@react-three/fiber';
+import { Car } from '@/src/models/Car';
+import Loader from '@/src/components/Loader';
+
+export default function Page() {
+  return (
+    <section className="w-full h-screen relative">
+      <Canvas className="w-full h-screen bg-transparent">
+        <directionalLight position={[1, 1, 1]} intensity={2} />
+        <ambientLight intensity={1} />
+        <pointLight position={[1, 5, 10]} intensity={2} />
+        <spotLight
+          position={[0, 50, 10]}
+          angle={0.15}
+          penumbra={1}
+          intensity={2}
+        />
+        <hemisphereLight groundColor="#000000" intensity={1} />
+        <Car position={[0, -1, -0.5]} scale={1} rotation={[0.1, 0.5, 0]} />
+      </Canvas>
+    </section>
+  );
 }

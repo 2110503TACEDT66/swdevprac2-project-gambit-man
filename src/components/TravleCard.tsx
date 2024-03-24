@@ -1,18 +1,20 @@
-'use client'
-import { Play } from "next/font/google";
-import { VlogPlayer } from "./VlogPlayer";
-import {useState} from "react"
-import { Rating } from "@mui/material";
-import { useWindowListener } from "@/hooks/useWindowListener";
-export function TravelCard(){
-    const [playing, setPlaying] = useState(true)
-    const [rating, setRating] = useState(0)
-    const [pointterPosition, setPointterPosition] = useState({x:0,y:0})
+'use client';
+import { Play } from 'next/font/google';
+import { VlogPlayer } from './VlogPlayer';
+import { useState } from 'react';
+import { Rating } from '@mui/material';
+import { useWindowListener } from '@/src/hooks/useWindowListener';
+export function TravelCard() {
+  const [playing, setPlaying] = useState(true);
+  const [rating, setRating] = useState(0);
+  const [pointterPosition, setPointterPosition] = useState({ x: 0, y: 0 });
 
-    useWindowListener('pointermove', (e)=>{
-        setPointterPosition({x: (e as PointerEvent).clientX, y: (e as PointerEvent).clientY})
-    })
-
+  useWindowListener('pointermove', (e) => {
+    setPointterPosition({
+      x: (e as PointerEvent).clientX,
+      y: (e as PointerEvent).clientY,
+    });
+  });
 
     return (
         <div className="w-[80%] shadow-lg mx-[10%] my-10 p-2 rounded-lg bg-gray-200
@@ -32,3 +34,4 @@ export function TravelCard(){
         </div>
     );
 }
+
