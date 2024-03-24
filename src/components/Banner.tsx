@@ -25,7 +25,7 @@ export default function Banner () {
                 <h3 className='text-xl font-serif'>Explore Your World with us</h3>
             </div>
             {
-                session? <div className='z-30 absolute top-5 right-10 font-semibold text-cyan-800 text-xl'>Hello {session.user?.name}</div> 
+                session? <div className='z-30 absolute top-5 right-10 font-semibold text-cyan-800 text-xl'>Hello {session.user.data.name}</div> 
                 : null
             }
             <button className='bg-white text-cyan-600 border border-cyan-600

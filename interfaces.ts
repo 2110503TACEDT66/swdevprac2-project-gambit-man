@@ -21,6 +21,6 @@ export interface CarJson {
 export interface UserRegister {
     name:string
     userEmail:string
-    tel:string 
+    tel:string
     userPassword:string
 }
