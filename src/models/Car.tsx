@@ -2,15 +2,58 @@
 
 import React, { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
+import { Mesh, BufferGeometry, Object3D } from 'three';
+import { useEffect, useState } from 'react';
+import { useFrame, useThree } from '@react-three/fiber';
 
-import carModel from '/assets/car1.glb';
+import carScene from '@/public/assets/car1.glb';
 
 export function Car({ ...props }) {
-  const carRef = useRef();
-  const { nodes, materials } = useGLTF(carModel);
+  const carRef: any = useRef<Object3D>(null);
+  const { nodes, materials }: any = useGLTF(carScene);
+  const [isPointerDown, setIsPointerDown] = useState(false);
+  const { gl, viewport } = useThree();
+
+  const lastX = useRef(0);
+  const lastY = useRef(0);
+
+  const handlePointerDown = (e: PointerEvent) => {
+    setIsPointerDown(true);
+    lastX.current = e.clientX;
+    lastY.current = e.clientY;
+  };
+
+  const handlePointerUp = () => {
+    setIsPointerDown(false);
+  };
+
+  const handlePointerMove = (e: PointerEvent) => {
+    if (isPointerDown && carRef.current) {
+      const dx = (e.clientX - lastX.current) / viewport.width;
+      const dy = (e.clientY - lastY.current) / viewport.height;
+
+      carRef.current.rotation.y += dx * Math.PI * 0.01;
+      carRef.current.rotation.x += dy * Math.PI * 0.01;
+
+      lastX.current = e.clientX;
+      lastY.current = e.clientY;
+    }
+  };
+
+  useEffect(() => {
+    const canvas = gl.domElement;
+    canvas.addEventListener('pointerdown', handlePointerDown);
+    canvas.addEventListener('pointerup', handlePointerUp);
+    canvas.addEventListener('pointermove', handlePointerMove);
+    return () => {
+      canvas.removeEventListener('pointerdown', handlePointerDown);
+      canvas.removeEventListener('pointerup', handlePointerUp);
+      canvas.removeEventListener('pointermove', handlePointerMove);
+    };
+  }, [gl, handlePointerDown, handlePointerMove, handlePointerUp]);
 
   return (
-    <group {...props} dispose={null}>
+    <group ref={carRef} {...props} dispose={null}>
       <primitive object={nodes.GLTF_created_0_rootJoint} />
       <skinnedMesh
         geometry={nodes.Object_7.geometry}
@@ -130,5 +173,3 @@ export function Car({ ...props }) {
     </group>
   );
 }
-
-useGLTF.preload(carModel);
