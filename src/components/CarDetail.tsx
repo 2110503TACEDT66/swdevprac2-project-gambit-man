@@ -2,12 +2,26 @@
 
 import LocationDateReserve from './LocationDateReserve';
 import { useState } from 'react';
-import bookingCar from '../libs/bookingCar';
+import addBooking from '../libs/addBooking';
+import { useSession } from 'next-auth/react';
+import dayjs, { Dayjs } from 'dayjs';
 export default function CarDetail({ car, choosing, setChoosing }: any) {
-  const [date, onDateChange] = useState('');
+  const [date, onDateChange] = useState<Dayjs>();
   const [location, onLocationChange] = useState('');
+  const { data: session } = useSession();
 
-  const onBooking = async () => {};
+  const booking = async () => {
+    if (!session || !date) {
+      return;
+    }
+    const booking = await addBooking(
+      '65e2de815332326d97212cee',
+      session.user.token,
+      car.name,
+      date
+    );
+    console.log(booking);
+  };
   return (
     <div
       className={`bg-white absolute right-0 p-2 flex-col ${
@@ -32,7 +46,7 @@ export default function CarDetail({ car, choosing, setChoosing }: any) {
         type="button"
         onClick={() => {
           console.log('test');
-          onBooking();
+          booking();
         }}
       >
         Reserve
