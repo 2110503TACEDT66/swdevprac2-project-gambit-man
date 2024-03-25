@@ -17,7 +17,10 @@ export const authOptions: AuthOptions = {
         password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials, req) {
-        if (!credentials) return null;
+        if (!credentials){
+          alert("pls enter email and password")
+          return null;
+        } 
         const user = await userLogin(credentials.email, credentials.password);
 
         if (user) {

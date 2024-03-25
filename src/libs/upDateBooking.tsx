@@ -1,20 +1,20 @@
 import dayjs, { Dayjs } from 'dayjs';
-export default async function  addBooking(providerId:string,token:string,carName:string,date:Dayjs){
+import { BookingEdit } from '@/interfaces';
+export default async function  upDateBooking(token:string,bookingId:string,bookingEdit:BookingEdit){
     
     // await new Promise ((resolve)=>{setTimeout(resolve,5000)})
     
-    const response = await fetch(`${process.env.BACKEND_URL}/api/v1/providers/${providerId}/bookings/`,{
-        method:"POST",
+    const response = await fetch(`${process.env.BACKEND_URL}/api/v1/bookings/${bookingId}`,{
+        method:"GET",
         headers: {
             authorization:`Bearer ${token}`,
             "Content-Type" : "application/json",
         },
         body: JSON.stringify({
-            BookingDate: date,
-            car: carName
-            
-        }),  
+            bookingEdit
+        }), 
     })
+
     if(!response.ok) {
         const a = await response.json()
         throw new Error(a.message)
@@ -22,4 +22,3 @@ export default async function  addBooking(providerId:string,token:string,carName
 
     return await response.json()
 }
-// `http://localhost:5000/api/items/put/${idbox}`
