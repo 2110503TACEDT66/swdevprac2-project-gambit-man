@@ -44,7 +44,12 @@ export default function Page() {
         setChoosing={setChoosing}
         choosing={choosing}
       />
-      <CarDetail car={car} choosing={choosing} setChoosing={setChoosing} />
+      <CarDetail
+        car={car}
+        cart={false}
+        choosing={choosing}
+        setChoosing={setChoosing}
+      />
     </section>
   );
 }

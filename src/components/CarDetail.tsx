@@ -14,13 +14,17 @@ export default function CarDetail({ car, choosing, setChoosing }: any) {
     if (!session || !date) {
       return;
     }
-    const booking = await addBooking(
-      '65e2de815332326d97212cee',
-      session.user.token,
-      car.name,
-      date
-    );
-    console.log(booking);
+    try {
+      const booking = await addBooking(
+        '65e2de815332326d97212cee',
+        session.user.token,
+        car.name,
+        date
+      );
+      console.log(booking);
+    } catch (error) {
+      alert(error);
+    }
   };
   return (
     <div

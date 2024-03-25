@@ -3,11 +3,7 @@
 import getBookings from '@/src/libs/getBookings';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
-import { cars } from '@/carsInfo';
-import Image from 'next/image';
-import { Canvas } from '@react-three/fiber';
-import { Stand } from '@/src/models/Stand';
-import { Sky } from '@react-three/drei';
+import BookingInfo from '@/src/components/BookingInfo';
 export default function CartPage() {
   const { data: session } = useSession();
   const [books, setBooks] = useState([]);
@@ -27,13 +23,10 @@ export default function CartPage() {
     fetchBooks();
   }, [session]);
   return (
-    <main>
-      <div className="w-full h-screen">
-        <Canvas>
-          <ambientLight />
-          <pointLight position={[10, 10, 10]} />
-        </Canvas>
-      </div>
+    <main className="flex flex-col gap-8 m-8 items-center">
+      {books.map((book: any) => (
+        <BookingInfo key={book._id} car={book.car} />
+      ))}
     </main>
   );
 }
