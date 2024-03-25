@@ -1,5 +1,4 @@
 'use client';
-
 import { Canvas } from '@react-three/fiber';
 import { Car } from '@/src/models/Car';
 import { Garage } from '@/src/models/Garage';
@@ -13,6 +12,8 @@ import car2 from '@/public/assets/car2.glb';
 import car3 from '@/public/assets/car3.glb';
 import car4 from '@/public/assets/car4.glb';
 import { useGLTF } from '@react-three/drei';
+import Link from 'next/link';
+import CarDetail from '@/src/components/CarDetail';
 export default function Page() {
   const cars = [
     {
@@ -53,7 +54,7 @@ export default function Page() {
     },
   ];
   const [car, setCar] = useState(cars[0]);
-  const carRef = useRef(0);
+  const [choosing, setChoosing] = useState(false);
   return (
     <section className="w-full h-screen relative flex flex-row">
       <Canvas
@@ -78,7 +79,13 @@ export default function Page() {
           <Garage position={[10, -1, -7]} scale={0.05} rotation={[0, 3, 0]} />
         </Suspense>
       </Canvas>
-      <CarChooser cars={cars} setCar={setCar} />
+      <CarChooser
+        cars={cars}
+        setCar={setCar}
+        setChoosing={setChoosing}
+        choosing={choosing}
+      />
+      <CarDetail car={car} choosing={choosing} setChoosing={setChoosing} />
     </section>
   );
 }
