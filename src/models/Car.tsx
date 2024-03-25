@@ -16,7 +16,7 @@ import { useFrame, useThree } from '@react-three/fiber';
 
 export function Car({ carScene, ...props }: any) {
   const carRef: any = useRef<Object3D>(null);
-  const { nodes, materials }: any = useGLTF(carScene);
+  const { scene }: any = useGLTF(carScene);
   const [isPointerDown, setIsPointerDown] = useState(false);
   const { gl, viewport } = useThree();
 
@@ -38,13 +38,19 @@ export function Car({ carScene, ...props }: any) {
       const dx = (e.clientX - lastX.current) / viewport.width;
       const dy = (e.clientY - lastY.current) / viewport.height;
 
-      carRef.current.rotation.y += dx * Math.PI * 0.01;
+      carRef.current.rotation.y += dx * Math.PI * 0.05;
       // carRef.current.rotation.x += dy * Math.PI * 0.01;
 
       lastX.current = e.clientX;
       // lastY.current = e.clientY;
     }
   };
+
+  useFrame(() => {
+    if (carRef.current && !isPointerDown) {
+      carRef.current.rotation.y += 0.01;
+    }
+  });
 
   useEffect(() => {
     const canvas = gl.domElement;
@@ -59,62 +65,8 @@ export function Car({ carScene, ...props }: any) {
   }, [gl, handlePointerDown, handlePointerMove, handlePointerUp]);
 
   return (
-    <group ref={carRef} {...props} dispose={null}>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.Chassis001_Vehicle_0.geometry}
-        material={materials.Vehicle}
-        rotation={[-Math.PI / 2, 0, 0]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.FLW001_Vehicle_0.geometry}
-        material={materials.Vehicle}
-        position={[0.866, 0.339, 1.331]}
-        rotation={[-Math.PI / 2, 0, -Math.PI / 9]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.FRW001_Vehicle_0.geometry}
-        material={materials.Vehicle}
-        position={[-0.866, 0.339, 1.331]}
-        rotation={[-Math.PI / 2, 0, -Math.PI / 9]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.RRW001_Vehicle_0.geometry}
-        material={materials.Vehicle}
-        position={[-0.893, 0.339, -1.387]}
-        rotation={[-Math.PI / 2, 0, 0]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.RLW001_Vehicle_0.geometry}
-        material={materials.Vehicle}
-        position={[0.893, 0.339, -1.387]}
-        rotation={[-Math.PI / 2, 0, 0]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.License_Plate_Front001_Matricula_0.geometry}
-        material={materials.Matricula}
-        position={[0, 0.308, 2.138]}
-        rotation={[-1.695, 0, 0]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.License_Plate_Back001_Matricula_0.geometry}
-        material={materials.Matricula}
-        position={[0, 0.826, -2.154]}
-        rotation={[-1.537, 0, Math.PI]}
-      />
-    </group>
+    <mesh ref={carRef} {...props} dispose={null}>
+      <primitive object={scene} />
+    </mesh>
   );
 }
