@@ -11,7 +11,7 @@ export default function CarChooser({
     <div
       className={`bg-transparent absolute right-0 p-2 flex-col ${
         choosing
-          ? 'translate-y-[-100%] duration-1000'
+          ? 'translate-y-[-150%] duration-1000'
           : 'translate-y-0 duration-1000 delay-1000'
       }`}
     >

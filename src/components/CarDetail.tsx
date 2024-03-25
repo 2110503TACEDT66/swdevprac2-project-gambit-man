@@ -31,7 +31,7 @@ export default function CarDetail({ car, choosing, setChoosing }: any) {
       className={`bg-white absolute right-0 p-2 flex-col ${
         choosing
           ? 'translate-y-0 duration-1000 delay-1000'
-          : 'translate-y-[-100%] duration-1000'
+          : 'translate-y-[-150%] duration-1000'
       }`}
     >
       <form className="flex flex-col">
