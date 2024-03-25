@@ -1,5 +1,5 @@
 'use client';
-import LocationDateReserve from '@/src/components/LocationDateReserve';
+import DateReserve from '@/src/components/DateReserve';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 import dayjs, { Dayjs } from 'dayjs';
@@ -14,9 +14,7 @@ export default function Reservations() {
   const cid = urlParams.get('id');
   const model = urlParams.get('model');
 
-  const {data:session} = useSession()
-
-  
+  const { data: session } = useSession();
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -51,23 +49,17 @@ export default function Reservations() {
         <div className="text-md text-left text-gray-600">
           Pick-Up Date and Location
         </div>
-        <LocationDateReserve
+        <DateReserve
           onDateChange={(value: Dayjs) => {
             setPickupDate(value);
-          }}
-          onLocationChange={(value: string) => {
-            setPickupLocation(value);
           }}
         />
         <div className="text-md text-left text-gray-600">
           Return Date and Location
         </div>
-        <LocationDateReserve
+        <DateReserve
           onDateChange={(value: Dayjs) => {
             setReturnDate(value);
-          }}
-          onLocationChange={(value: string) => {
-            setReturnLocation(value);
           }}
         />
       </div>
