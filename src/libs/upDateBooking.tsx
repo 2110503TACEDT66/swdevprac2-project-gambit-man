@@ -1,5 +1,6 @@
 import dayjs, { Dayjs } from 'dayjs';
 import { BookingEdit } from '@/interfaces';
+
 export default async function upDateBooking(
   token: string,
   bookingId: string,
