@@ -27,16 +27,13 @@ export default async function TopMenu() {
               <summary>Menu</summary>
               <ul className="p-2 bg-base-100 rounded-t-none z-10">
                 <li>
-                  <Link href={'/about'}>About</Link>
-                </li>
-                <li>
                   <Link href={'/car'}>Select Car</Link>
                 </li>
                 <li>
                   <Link href={'/cart'}>Reservations</Link>
                 </li>
                 <li>
-                  <Link href={'/reservations/manage'}>Profile</Link>
+                  <Link href={'/profile'}>Profile</Link>
                 </li>
               </ul>
             </details>

@@ -14,9 +14,9 @@ export default async function  upDateBooking(token:string,bookingId:string,booki
             bookingEdit
         }), 
     })
-
+const a = await response.json()
     if(!response.ok) {
-        const a = await response.json()
+        
         throw new Error(a.message)
     }
 

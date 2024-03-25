@@ -12,7 +12,6 @@ export default async function userLogin(userEmail:string, userPassword:string){
 
     if(!response.ok){
         const a = await response.json()
-        console.log(a)
         throw new Error(a.message)
     }
 
