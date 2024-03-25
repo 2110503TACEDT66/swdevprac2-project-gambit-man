@@ -1,4 +1,3 @@
-
 import dayjs, { Dayjs } from 'dayjs';
 export default async function  addBooking(providerId:string,token:string,carName:string,date:Dayjs){
     
@@ -19,9 +18,8 @@ export default async function  addBooking(providerId:string,token:string,carName
     if(!response.ok) {
         const a = await response.json()
         throw new Error(a.message)
-    }
-  );
-  
-  return await response.json();
-}
 
+    }
+
+    return await response.json()
+}
