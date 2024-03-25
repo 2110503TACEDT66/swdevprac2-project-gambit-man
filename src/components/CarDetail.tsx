@@ -1,13 +1,12 @@
 'use client';
 
-import LocationDateReserve from './LocationDateReserve';
+import DateReserve from './DateReserve';
 import { useState } from 'react';
 import addBooking from '../libs/addBooking';
 import { useSession } from 'next-auth/react';
 import dayjs, { Dayjs } from 'dayjs';
 export default function CarDetail({ car, choosing, setChoosing }: any) {
   const [date, onDateChange] = useState<Dayjs>();
-  const [location, onLocationChange] = useState('');
   const { data: session } = useSession();
 
   const booking = async () => {
@@ -37,10 +36,7 @@ export default function CarDetail({ car, choosing, setChoosing }: any) {
       <form className="flex flex-col">
         <h1>{car.name}</h1>
         <h1>Detail :</h1>
-        <LocationDateReserve
-          onDateChange={onDateChange}
-          onLocationChange={onLocationChange}
-        />
+        <DateReserve onDateChange={onDateChange} />
 
         <button type="button" onClick={() => setChoosing(false)}>
           Out
