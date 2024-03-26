@@ -24,7 +24,6 @@ export default function Register() {
     if (!nameValid || !emailValid || !passwordValid || !telephoneValid) {
       return;
     }
-    setRegistered(true);
     try {
       const user: UserRegister = {
         name: name,
@@ -33,6 +32,12 @@ export default function Register() {
         userPassword: password,
       };
       const newUser = await userRegister(user);
+      if (newUser) {
+        setRegistered(true);
+        setTimeout(() => {
+          router.push('/api/auth/signin');
+        }, 1000);
+      }
     } catch (error) {
       console.log(error);
     }
