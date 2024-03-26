@@ -46,6 +46,7 @@ export default function CartPage() {
           bookingID={book._id}
           count={count}
           setCount={setCount}
+          user={book.user}
         />
       ))}
     </main>

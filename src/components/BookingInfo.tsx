@@ -16,6 +16,7 @@ export default function BookingInfo({
   bookingID,
   count,
   setCount,
+  user,
 }: any) {
   const { data: session } = useSession();
   const [providers, setProviders] = useState([]);
@@ -140,6 +141,7 @@ export default function BookingInfo({
         ) : (
           <div className="card-body">
             <h2 className="card-title">{selectedCar.name}</h2>
+            <p>Renter: {user.name}</p>
             <p>BookingDate: {dayjs(date).format('DD/MM/YYYY')}</p>
             <p>Car Rental: {selectedProvider.name}</p>
             <p>Contact: {selectedProvider.tel}</p>
