@@ -24,6 +24,7 @@ export default function Register() {
     if (!nameValid || !emailValid || !passwordValid || !telephoneValid) {
       return;
     }
+    setRegistered(true);
     try {
       const user: UserRegister = {
         name: name,
@@ -32,11 +33,6 @@ export default function Register() {
         userPassword: password,
       };
       const newUser = await userRegister(user);
-      if (newUser) {
-        setRegistered(true);
-      }
-      router.replace('/api/auth/signin');
-      router.refresh();
     } catch (error) {
       console.log(error);
     }
