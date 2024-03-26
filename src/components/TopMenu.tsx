@@ -35,6 +35,9 @@ export default async function TopMenu() {
                 <li>
                   <Link href={'/profile'}>Profile</Link>
                 </li>
+                <li>
+                  <Link href={'/credit'}>Credit</Link>
+                </li>
               </ul>
             </details>
           </li>
