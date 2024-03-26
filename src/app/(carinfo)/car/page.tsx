@@ -2,7 +2,6 @@
 import { Canvas } from '@react-three/fiber';
 import { Car } from '@/src/models/Car';
 import { Garage } from '@/src/models/Garage';
-import Loader from '@/src/components/Loader';
 import { Suspense, useRef } from 'react';
 import { Sky } from '@react-three/drei';
 import CarChooser from '@/src/components/CarChooser';
@@ -64,7 +63,7 @@ export default function Page() {
           far: 1000,
         }}
       >
-        <Suspense fallback={<Loader />}>
+        <Suspense>
           <Sky />
           <ambientLight intensity={8} />
           <directionalLight position={[-5, 1, 3]} intensity={3} />
