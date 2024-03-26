@@ -37,7 +37,6 @@ export default function Register() {
       }
       router.replace('/api/auth/signin');
       router.refresh();
-      setRegistered(false);
     } catch (error) {
       console.log(error);
     }
