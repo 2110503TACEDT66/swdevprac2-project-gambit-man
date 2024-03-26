@@ -14,106 +14,94 @@ export default function Register() {
     if (!name || !email || !telephone || !password) {
       return;
     }
-    const user: UserRegister = {
-      name: name,
-      userEmail: email,
-      tel: telephone,
-      userPassword: password,
-    };
-    const newUser = await userRegister(user);
-    router.push('/');
-    router.refresh();
+    try {
+      const user: UserRegister = {
+        name: name,
+        userEmail: email,
+        tel: telephone,
+        userPassword: password,
+      };
+      const newUser = await userRegister(user);
+      router.push('/api/auth/signin');
+      router.refresh();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <main className="bg-slate-100  p-auto w-1/2 m-auto">
-      <form className="flex flex-col items-center w-full justify-center p-2 mt-20">
-        <div className="text-3xl text-blue-700">Register User</div>
-        <div className="flex item-center w-1/2 my-2">
-          <label className="w-auto block text-gray-700 pr-4" htmlFor="UserName">
-            UserName
-          </label>
-          <input
-            type="text"
-            required
-            id="UserName"
-            name="UserName"
-            placeholder="UserName"
-            className="bg-white border-2 border-gray-200 rounded w-full p-2
-                                text-gray-700 focus:outline-mome focus:border-blue-400"
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-          />
+    <div className="hero min-h-screen bg-base-200">
+      <div className="hero-content flex-col lg:flex-row-reverse">
+        <div className="text-center lg:text-left">
+          <h1 className="text-5xl font-bold">Register</h1>
         </div>
-        <div className="flex item-center w-1/2 my-2">
-          <label
-            className="w-auto block text-gray-700 pr-4"
-            htmlFor="UserEmail"
-          >
-            UserEmail
-          </label>
-          <input
-            type="text"
-            required
-            id="UserEmail"
-            name="UserEmail"
-            placeholder="UserEmail"
-            className="bg-white border-2 border-gray-200 rounded w-full p-2
-                                text-gray-700 focus:outline-mome focus:border-blue-400"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
+        <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <form className="card-body">
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="name"
+                placeholder="John"
+                className="input input-bordered"
+                required
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="email"
+                placeholder="John@gmail.com"
+                className="input input-bordered"
+                required
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                type="password"
+                placeholder="password"
+                className="input input-bordered"
+                required
+                minLength={8}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text">Tel</span>
+              </label>
+              <input
+                type="tel"
+                placeholder="099-999-9999"
+                className="input input-bordered"
+                required
+                onChange={(e) => setTelephone(e.target.value)}
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              />
+            </div>
+            <div className="form-control mt-6">
+              <button
+                className="btn btn-primary"
+                type="submit"
+                onClick={(e: React.FormEvent) => {
+                  e.preventDefault();
+                  addUser();
+                }}
+              >
+                Login
+              </button>
+            </div>
+          </form>
         </div>
-        <div className="flex item-center w-1/2 my-2">
-          <label
-            className="w-auto block text-gray-700 pr-4"
-            htmlFor="telephone"
-          >
-            tel
-          </label>
-          <input
-            type="text"
-            required
-            id="telephone"
-            name="telephone"
-            placeholder="telephone"
-            className="bg-white border-2 border-gray-200 rounded w-full p-2
-                                text-gray-700 focus:outline-mome focus:border-blue-400"
-            onChange={(e) => {
-              setTelephone(e.target.value);
-            }}
-          />
-        </div>
-        <div className="flex item-center w-1/2 my-2">
-          <label className="w-auto block text-gray-700 pr-4" htmlFor="password">
-            password
-          </label>
-          <input
-            type="text"
-            required
-            id="password"
-            name="password"
-            placeholder="password"
-            className="bg-white border-2 border-gray-200 rounded w-full p-2
-                                text-gray-700 focus:outline-mome focus:border-blue-400"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-        </div>
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white p-2 rounded"
-          onClick={(e) => {
-            e.preventDefault();
-            addUser();
-          }}
-        >
-          Add new User
-        </button>
-      </form>
-    </main>
+      </div>
+    </div>
   );
 }
