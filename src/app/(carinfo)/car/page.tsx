@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import CarDetail from '@/src/components/CarDetail';
 import { cars } from '@/carsInfo';
-import { LinearProgress } from "@mui/material";
+import Loader from '@/src/components/Loader';
 export default function Page() {
   const [car, setCar] = useState(cars[0]);
   const [choosing, setChoosing] = useState(false);
@@ -63,7 +63,7 @@ export default function Page() {
           far: 1000,
         }}
       >
-        <Suspense>
+        <Suspense fallback={<Loader />}>
           <Sky />
           <ambientLight intensity={8} />
           <directionalLight position={[-5, 1, 3]} intensity={3} />
