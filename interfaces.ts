@@ -1,3 +1,4 @@
+import dayjs, { Dayjs } from 'dayjs';
 export interface ReservationItem {
     carId: string
     CarModel: string
@@ -16,4 +17,19 @@ export interface CarItem {
 export interface CarJson {
     count: number
     data: CarItem[]
+}
+
+export interface UserRegister {
+    name:string
+    userEmail:string
+    tel:string
+    userPassword:string
+}
+
+export interface BookingEdit {
+    BookingDate:Dayjs
+    user:string
+    provider:string
+    car:string
+    createAt:Dayjs
 }

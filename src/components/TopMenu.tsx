@@ -1,34 +1,45 @@
-import styles from './topmenu.module.css'
-import Image from 'next/image'
-import TopMenuItem from './TopMenuItem';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '@/app/api/auth/[...nextauth]/route';
-import { Link } from '@mui/material';
-
-export default async function TopMenu(){
-
-    const session = await getServerSession(authOptions)
-   
-    return(
-        <div className={styles.menucontainer}>
-        <Image src={'/img/logo.png'} className={styles.logoimg} alt='logo'
-        width={0} height={0} sizes='100vh'/>
-        <TopMenuItem title='Select Car' pageRef='/car'/>
-        <TopMenuItem title='Reservations' pageRef='/reservations'/>
-        <TopMenuItem title='About' pageRef='/about'/>
-        <div className='flex flex-row absolute right-0 h-full'>
-        <TopMenuItem title='Cart' pageRef='/cart'/>
-        {
-            session? <Link href="/api/auth/signout">
-                <div className='flex items-center h-full px-2 text-cyan-600 text-sm'>
-                        Sing-Out of {session.user?.name}</div></Link>
-                        : <Link href="/api/auth/signin">
-                            <div className='flex items-center h-full px-2 text-cyan-600 text-sm'>
-                               Sign-In 
-                            </div></Link>
-        }
-        </div>
+import { authOptions } from '@/src/app/api/auth/[...nextauth]/route';
+import Link from 'next/link';
+export default async function TopMenu() {
+  const session = await getServerSession(authOptions);
+  return (
+    <div className="navbar bg-base-100 z-30 fixed">
+      <div className="flex-1">
+        <Link className="btn btn-ghost text-xl" href="/">
+          Home
+        </Link>
+      </div>
+      <div className="flex-none">
+        <ul className="menu menu-horizontal px-1">
+          <li>
+            {session ? (
+              <Link href="/api/auth/signout">Sign Out</Link>
+            ) : (
+              <Link href="/api/auth/signin">Sign In</Link>
+            )}
+          </li>
+          <li>
+            <Link href="/register">Register</Link>
+          </li>
+          <li>
+            <details className="mx-7">
+              <summary>Menu</summary>
+              <ul className="p-2 bg-base-100 rounded-t-none z-30">
+                <li>
+                  <Link href={'/car'}>Select Car</Link>
+                </li>
+                <li>
+                  <Link href={'/cart'}>Reservations</Link>
+                </li>
+                <li>
+                  <Link href={'/profile'}>Profile</Link>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </div>
     </div>
-    );
-    
+  );
 }

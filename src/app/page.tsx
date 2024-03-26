@@ -1,11 +1,8 @@
-
-import Banner from '@/components/Banner'
-import { TravelCard } from '@/components/TravleCard'
+import Banner from '@/src/components/Banner';
 export default function Home() {
   return (
     <main>
-      <Banner/>
-      <TravelCard/>
+      <Banner />
     </main>
-  )
+  );
 }
