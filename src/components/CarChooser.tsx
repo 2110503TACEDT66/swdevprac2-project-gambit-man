@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import { div } from 'three/examples/jsm/nodes/Nodes.js';
 
 export default function CarChooser({
   cars,
@@ -9,7 +8,7 @@ export default function CarChooser({
 }: any) {
   return (
     <div
-      className={`bg-transparent absolute right-0 p-2 flex-col ${
+      className={`bg-transparent fixed right-0 p-2 flex-col ${
         choosing
           ? 'translate-y-[-150%] duration-1000'
           : 'translate-y-0 duration-1000 delay-1000'
@@ -36,7 +35,12 @@ export default function CarChooser({
           </div>
         </div>
       ))}
-      <button onClick={() => setChoosing(true)}>Choose</button>
+      <button
+        className="btn btn-active btn-neutral ml-6"
+        onClick={() => setChoosing(true)}
+      >
+        Choose This Car
+      </button>
     </div>
   );
 }

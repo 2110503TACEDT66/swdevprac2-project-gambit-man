@@ -36,13 +36,17 @@ export default function BookingInfo({
   };
 
   const handleDelete = async () => {
-    if (!session) {
-      return;
+    try {
+      if (!session) {
+        return;
+      }
+      console.log(bookingID, session.user.token);
+      await deleteBooking(bookingID, session.user.token);
+      setCount((prevCount: number) => prevCount - 1);
+      router.refresh();
+    } catch (error) {
+      console.log(error);
     }
-    console.log(bookingID, session.user.token);
-    await deleteBooking(bookingID, session.user.token);
-    setCount((prevCount: number) => prevCount - 1);
-    router.refresh();
   };
 
   const updateBooking = async () => {
