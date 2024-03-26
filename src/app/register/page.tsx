@@ -4,6 +4,8 @@ import userRegister from '@/src/libs/userRegister';
 import { redirect } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Suspense } from 'react';
+import { LinearProgress } from "@mui/material";
 export default function Register() {
   const [name, setName] = useState<string | null>(null);
   const [email, setEmail] = useState<string | null>(null);
@@ -67,7 +69,8 @@ export default function Register() {
   }, [name, email, password, telephone]);
 
   return (
-    <div className="hero min-h-screen bg-base-200 gap-y-3 mt-10">
+    <Suspense fallback={<p>Loading ... <LinearProgress/></p>}>
+            <div className="hero min-h-screen bg-base-200 gap-y-3 mt-10">
       <div className="hero-content flex-col lg:flex-row-reverse">
         <div className="text-center lg:text-left">
           <h1 className="text-5xl font-bold m-10">Register</h1>
@@ -289,5 +292,7 @@ export default function Register() {
         </div>
       </div>
     </div>
+    </Suspense>
+    
   );
 }

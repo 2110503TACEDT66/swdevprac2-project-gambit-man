@@ -9,7 +9,7 @@ import { useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import CarDetail from '@/src/components/CarDetail';
 import { cars } from '@/carsInfo';
-
+import { LinearProgress } from "@mui/material";
 export default function Page() {
   const [car, setCar] = useState(cars[0]);
   const [choosing, setChoosing] = useState(false);
