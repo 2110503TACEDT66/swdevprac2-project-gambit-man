@@ -36,6 +36,7 @@ export default function Register() {
         setRegistered(true);
         setTimeout(() => {
           router.push('/api/auth/signin');
+          router.refresh();
         }, 1000);
       }
     } catch (error) {
