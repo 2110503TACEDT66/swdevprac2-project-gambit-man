@@ -18,9 +18,9 @@ export const cars = [
     model: car2,
     name: 'Lamborghini',
     picture: 'car2.png',
-    position: [0.5, 0.1, 0.2],
-    scale: 0.6,
-    rotation: [0, 1.4, 0],
+    position: [0, -0.6, 1],
+    scale: 1.2,
+    rotation: [0, -1.7, 0],
   },
   {
     id: '003',

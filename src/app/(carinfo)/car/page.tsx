@@ -63,7 +63,7 @@ export default function Page() {
           far: 1000,
         }}
       >
-        <Suspense fallback={<p>Loading ... <LinearProgress/></p>}>
+        <Suspense>
           <Sky />
           <ambientLight intensity={8} />
           <directionalLight position={[-5, 1, 3]} intensity={3} />
