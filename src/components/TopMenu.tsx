@@ -4,7 +4,7 @@ import Link from 'next/link';
 export default async function TopMenu() {
   const session = await getServerSession(authOptions);
   return (
-    <div className="navbar bg-base-100 z-100 fixed">
+    <div className="navbar bg-base-100 z-30 fixed">
       <div className="flex-1">
         <Link className="btn btn-ghost text-xl" href="/">
           Home
@@ -25,7 +25,7 @@ export default async function TopMenu() {
           <li>
             <details className="mx-7">
               <summary>Menu</summary>
-              <ul className="p-2 bg-base-100 rounded-t-none z-10">
+              <ul className="p-2 bg-base-100 rounded-t-none z-30">
                 <li>
                   <Link href={'/car'}>Select Car</Link>
                 </li>

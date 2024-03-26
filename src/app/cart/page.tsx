@@ -36,7 +36,7 @@ export default function CartPage() {
   console.log(booksInfo);
 
   return (
-    <main className="flex flex-col gap-8 m-8 items-center">
+    <main className="flex flex-col gap-8 m-8 items-center mt-20">
       {booksInfo.map((book: any) => (
         <BookingInfo
           key={book._id}

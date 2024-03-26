@@ -28,7 +28,6 @@ export default async function RootLayout({
           <TopMenu />
           {children}
         </NextAuthProvider>
-        
       </body>
     </html>
   );
