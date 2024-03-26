@@ -27,8 +27,8 @@ export default function Register() {
 
   return (
     <main className="bg-slate-100  p-auto w-1/2 m-auto">
-      <form className="flex flex-col items-center w-full justify-center p-2">
-        <div className="text-xl text-blue-700">Register User</div>
+      <form className="flex flex-col items-center w-full justify-center p-2 mt-20">
+        <div className="text-3xl text-blue-700">Register User</div>
         <div className="flex item-center w-1/2 my-2">
           <label className="w-auto block text-gray-700 pr-4" htmlFor="UserName">
             UserName
